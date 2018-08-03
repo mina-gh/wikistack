@@ -12,7 +12,7 @@ user.get('/', async (req, res, next) => {
     if (users.length > 0){
       res.send(userList(users));
     } else {
-      res.status(200).send("Warning: Couldn't find any authors");
+      res.status(404).send("Warning: Couldn't find any authors");
     }
   } catch (err){
     next(err);

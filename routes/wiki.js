@@ -28,7 +28,10 @@ wiki.get('/:slug', async (req, res, next) => {
     }else{
       res.status(404).send("Couldn't find page and/or author");
     }
-  } catch (err){next(err)}
+  } catch (err){
+    // next(err);
+    res.status(500).send(err.stack);
+  }
 })
 
 // POST /
@@ -55,6 +58,23 @@ wiki.post('/', async (req, res, next) => {
 });
 
 
+// TODO: PUT /:slug/edit
+
+
+// TODO: DELETE /:slug
+wiki.delete('/:slug', async (req, res, next) => {
+  try {
+    await Page.destroy({
+      where: {
+        slug: req.params.slug
+      }
+    });
+
+    res.redirect('/wiki');
+  }catch(err){
+    next(err);
+  }
+});
 
 
 

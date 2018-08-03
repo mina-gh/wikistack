@@ -1,5 +1,6 @@
 const html = require("html-template-tag");
 const layout = require("./layout");
+const marked = require('marked');
 
 module.exports = () => layout(html`
   <h3>Add a Page</h3>
