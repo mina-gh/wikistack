@@ -19,9 +19,16 @@ wiki.get('/:slug', async (req, res, next) => {
       where: {
         slug: req.params.slug
       }
-    })
-    res.send(wikiPage(page))
-    } catch (err){next(err)}
+    });
+
+    const author = await User.findById(page.authorId);
+
+    if(page && author){
+      res.send(wikiPage(page, author))
+    }else{
+      res.status(404).send("Couldn't find page and/or author");
+    }
+  } catch (err){next(err)}
 })
 
 // POST /
