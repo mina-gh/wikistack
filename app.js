@@ -3,7 +3,8 @@ const app = express()
 const morgan = require('morgan')
 const path = require('path')
 const { db } = require('./models')
-const {wiki, user} = require('./routes');
+const wiki = require('./routes/wiki');
+const user  = require('./routes/user');
 
 app.use(express.urlencoded({extended: false}))
 app.use(morgan('dev'))

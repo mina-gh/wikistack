@@ -13,17 +13,17 @@ user.get('/:id', async (req, res) => {
 });
 
 // POST /users
-user.POST('/', async (req, res) => {
+user.post('/', async (req, res) => {
 
 });
 
 // PUT /users/:id
-user.PUT('/:id', async (req, res) => {
+user.put('/:id', async (req, res) => {
 
 });
 
 // DELETE /users/:id
-user.DELETE('/:id', async (req, res) => {
+user.delete('/:id', async (req, res) => {
 
 });
 

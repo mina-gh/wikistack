@@ -15,7 +15,17 @@ const Page = db.define('page', {
     type: Sequelize.STRING,
     allowNull: false},
   status: Sequelize.ENUM('open', 'closed')
+},{
+  hooks: {
+    beforeValidate: (page, options) =>{
+      page.slug = 'temp-slug-value-to-pass-the-validation';
+    }
+  }
 })
+
+Page.beforeCreate((pageInstance, options) => {
+ pageInstance.slug = pageInstance.title.replace(/\s+/g, '_').replace(/\W/g, '');
+});
 
 const User = db.define('user', {
   name: {
@@ -30,11 +40,6 @@ const User = db.define('user', {
     }
   }
 })
-
-
-
-
-
 
 module.exports = {
   db,
