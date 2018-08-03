@@ -16,10 +16,15 @@ app.get('/', (req, res) => {
 
 
 const PORT = 3000
-app.listen(PORT, async () => {
-  await db.authenticate().
+const init = async () => {
+  //await models.db.sync({force: true})
+  await models.db.sync()
+  app.listen(PORT, async () => {
+  db.authenticate().
   then(() => {
     console.log("db is all good")
   })
   console.log("It is all good")
-})
+})}
+
+init()
